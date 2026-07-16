@@ -1,17 +1,19 @@
 import { useProduct } from '../../hooks/useProduct'
 import { ErrorState } from '../common/ErrorState'
 import { LoadingState } from '../common/LoadingState'
+import { SiteHeader } from '../common/SiteHeader'
 import { AddOnPackages } from './AddOnPackages'
 import { BedOptions } from './BedOptions'
 import { Contact } from './Contact'
 import { CoverageChecker } from './CoverageChecker'
 import { Differentiators } from './Differentiators'
 import { Documents } from './Documents'
-import { Header } from './Header'
 import { Hero } from './Hero'
 import { Improvements } from './Improvements'
 import { Incentives } from './Incentives'
+import { QuickFind } from './QuickFind'
 import { ResearchStats } from './ResearchStats'
+import { SectionNav } from './SectionNav'
 
 /**
  * Orchestrates the Cubby 2 product detail page: loads the product through the service
@@ -30,7 +32,10 @@ export function ProductDetailPage() {
 
   return (
     <div className="min-h-screen">
-      <Header product={product} />
+      <SiteHeader>
+        <QuickFind product={product} />
+      </SiteHeader>
+      <SectionNav />
 
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6 sm:py-8">
         <Hero product={product} />

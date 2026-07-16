@@ -23,8 +23,15 @@
 
 html {
   scroll-behavior: smooth;
-  /* offset in-page anchors so the sticky header never covers a jumped-to section */
-  scroll-padding-top: 6rem;
+}
+
+/*
+ * Offset applied to every in-page jump target so the sticky header (h-16) + section
+ * nav never cover it. scroll-margin-top is respected by BOTH anchor-link navigation
+ * and element.scrollIntoView() (used by Quick-Find), keeping the two paths consistent.
+ */
+.jump-target {
+  scroll-margin-top: 8rem;
 }
 
 body {

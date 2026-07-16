@@ -17,7 +17,7 @@ interface SectionProps {
  */
 export function Section({ id, title, description, action, children }: SectionProps) {
   return (
-    <section id={id} aria-labelledby={`${id}-heading`} className="scroll-mt-24">
+    <section id={id} aria-labelledby={`${id}-heading`} className="jump-target">
       <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-8">
         <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
           <div>

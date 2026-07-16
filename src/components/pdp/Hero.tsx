@@ -14,7 +14,7 @@ function startingPrice(product: Product): number {
 
 export function Hero({ product }: HeroProps) {
   return (
-    <section id="overview" aria-labelledby="overview-heading" className="scroll-mt-24">
+    <section id="overview" aria-labelledby="overview-heading" className="jump-target">
       <div className="grid items-center gap-8 rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-8 md:grid-cols-2">
         <div>
           <p className="mb-2 inline-flex rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold tracking-wide text-accent-ink uppercase">

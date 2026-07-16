@@ -31,7 +31,7 @@ function DocumentCard({ doc }: { doc: ProductDocument }) {
       href={doc.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex scroll-mt-28 flex-col rounded-xl border border-line p-4 transition hover:border-accent hover:bg-accent/5"
+      className="group jump-target flex flex-col rounded-xl border border-line p-4 transition hover:border-accent hover:bg-accent/5"
     >
       <div className="flex items-center justify-between gap-2">
         <Badge tone={doc.lmnGroup ? 'accent' : 'neutral'}>
