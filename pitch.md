@@ -1,16 +1,21 @@
 # Challenges
-* Information is disorganized and unsearchable. Since product information is buried in static PDF's and Google docs, locating specific pieces of information is impossible without hunting and luck.
-* UX is unintuitive. It's unclear when selecting an option if a subgroup of options will be presented, a new tab will open, or a PDF will apear.
-* Forms are full of friction. Confirmation windows prior to presenting the form creates friction. "Scroll bar within a scroll bar" UI creates friction. Form "steps" and lack of clarity create friction.
-* Lack of user context. On first visiting the site, a modal prompt assumes the user is an end consumer. Other pages prompt to reconfirm my identity as a supplier.
+* Information is disorganized and unsearchable. Since product information is buried in static PDF's and Google docs, locating specific pieces of information is impossible without some hunting and luck. Even information that isn't product specific is difficult to find (incentive rewards, learning about Cubby as a company, or contact information).
+* UX is unintuitive. It's unclear when selecting an option if a subgroup of options will be presented, a new tab will open, or a PDF will apear. Prior familiarity with the layout and flow is required before a user can navigate effectively.
+* Forms are full of friction. Confirmation windows prior to presenting the form creates friction. "Scroll bar within a scroll bar" UI creates friction. Form "steps" and lack of clarity create friction. This is a huge hurdle for new users of any system, so I think it's worth calling out explicitly.
+* Lack of user context. On first visiting the site, a modal prompt assumes the user is an end consumer. Other pages prompt to reconfirm my identity as a supplier. As a user, there isn't an opportunity to track any of work that's already in progress.
 # Opportunities
 * The first opportunity is addressing the first three challenges laid out above through structured and managed product data. Organized navigation, search capabilities, replacing PDF downloads with real content will enable users to locate accurate information in under 30 seconds.
 * The second opportunity is building personalization and state to address challenge four. By building an authenticated experience, we enable features like form progress tracking, state-specific coverage views, saved documents, and customized incentives.
 * The third opportunity is to lean into AI-assisted features to enable things like form automation, semantic context search, an AI assistant, or coverage inference.
 # Recommendation
-I chose to implement a Product Detail Page, which would be a portion of opportunity 1. I'm a firm believer that we need to start with the foundation, and to me, that's the product itself. We address the root cause of the DME partner's issues by building out an intuitive, simple, and complete website, driven by product data that is maintainable.
+I chose to implement a Product Detail Page, which would be a portion of opportunity 1. I'm a firm believer that we need to start with the foundation, and to me, that's the product itself. We address the root cause of the DME partner's issues by building out an intuitive, simple, and complete website, driven by product data that is maintainable. 
 
-TODO: Include a rough business impact estimate, tied to a conversion or partner-activation metric. Directional math is fine; show your reasoning. 
+To be crystal clear though: this implementation isn't going to "wow" a new partner, it isn't going to be the sole reason someone chooses to work with Cubby. What this recommendation does is sets Cubby up with a real-world, performant, and highly extensible technical foundation. The foundation is then what enables the creatively flashy features that _will_ keep users across all roles coming back for more.
+
+### Business Impact
+Let's assume a typicall DME account manager is juggling 10 patients across multiple manufacturers, requiring 3 to 4 interactions with Cubby's portal through each patient's journey. The portal may not be a tool the account manager uses on a daily basis, which means the knowledge of what information is available or how to it quickly atrophies. It wouldn't be unreasonable to think that a manager in this situation would spend 5 minutes per session looking for the information they need. If we can cut that to 30 seconds or less on each visit, we save them from wasiting 2 to 3 precious hours per month.
+
+Even without building personalization in version 1, we can also begin to push the activation metric by surfacing applicable information more effectively. A supplier who can confidently locate information without relying on calling the service desk, who is no longer frustrated with the wasted time of searching for a specific needle in the haystack, who is now willing to put trust and confidence in Cubby's technical engineering is a supplier who will confidently submit their first order and is well on the path to selling five.
 
 # Alternative
 The alternative in my opinion would be to jump directly to the AI-assisted features. I think going this route would be the best option if we're looking for something immediately flashy, but at the cost of real depth or usefulness.
