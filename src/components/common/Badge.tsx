@@ -1,12 +1,20 @@
 import type { ReactNode } from 'react'
 
-type BadgeTone = 'accent' | 'gold' | 'neutral' | 'positive'
+export type BadgeTone =
+  | 'accent'
+  | 'gold'
+  | 'neutral'
+  | 'positive'
+  | 'violet'
+  | 'rose'
 
 const TONE_CLASSES: Record<BadgeTone, string> = {
   accent: 'bg-accent/20 text-accent-ink',
   gold: 'bg-gold/30 text-ink',
   neutral: 'bg-canvas text-ink-soft',
   positive: 'bg-emerald-100 text-emerald-800',
+  violet: 'bg-violet-100 text-violet-800',
+  rose: 'bg-rose-100 text-rose-800',
 }
 
 interface BadgeProps {

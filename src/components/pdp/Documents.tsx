@@ -1,6 +1,6 @@
 import type { DocumentCategory, ProductDocument } from '../../types/product'
 import { documentAnchorId } from '../../lib/anchors'
-import { Badge } from '../common/Badge'
+import { Badge, type BadgeTone } from '../common/Badge'
 import { Section } from '../common/Section'
 
 interface DocumentsProps {
@@ -15,6 +15,16 @@ const CATEGORY_LABEL: Record<DocumentCategory, string> = {
   worksheet: 'LMN prep',
   equipment: 'Reference',
   outline: 'LMN prep',
+}
+
+/** A distinct badge color per category so the tags read apart at a glance. */
+const CATEGORY_TONE: Record<DocumentCategory, BadgeTone> = {
+  'order-form': 'positive', // Ordering — green
+  'lmn-guide': 'accent', // (guide cards show the group badge instead)
+  outline: 'gold', // LMN prep — amber
+  worksheet: 'gold', // LMN prep — amber
+  catalog: 'violet', // Catalog — violet
+  equipment: 'rose', // Reference — rose
 }
 
 /** Visible groupings, in display order, mapped to the categories they contain. */
@@ -34,7 +44,7 @@ function DocumentCard({ doc }: { doc: ProductDocument }) {
       className="group jump-target flex flex-col rounded-xl border border-line p-4 transition hover:border-accent hover:bg-accent/5"
     >
       <div className="flex items-center justify-between gap-2">
-        <Badge tone={doc.lmnGroup ? 'accent' : 'neutral'}>
+        <Badge tone={doc.lmnGroup ? 'accent' : CATEGORY_TONE[doc.category]}>
           {doc.lmnGroup ? `LMN Group ${doc.lmnGroup}` : CATEGORY_LABEL[doc.category]}
         </Badge>
         <span aria-hidden="true" className="text-ink-soft transition group-hover:text-accent-ink">
@@ -55,7 +65,7 @@ export function Documents({ documents }: DocumentsProps) {
     <Section
       id="documents"
       title="Documents & resources"
-      description="Forms, LMN guides, and references — no more hunting through PDFs."
+      description="Forms, LMN guides, and references."
     >
       <div className="space-y-6">
         {GROUPS.map((group) => {

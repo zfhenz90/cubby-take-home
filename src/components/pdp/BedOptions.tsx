@@ -11,11 +11,14 @@ export function BedOptions({ options }: BedOptionsProps) {
     <Section
       id="bed-options"
       title="Bed options & pricing"
-      description="Configurations, SKUs, and MSRP. Search a SKU above to jump straight here."
+      description="Configurations, SKUs, and MSRP."
     >
       <div className="grid gap-5 md:grid-cols-2">
         {options.map((option) => (
-          <article key={option.id} className="rounded-xl border border-line p-5">
+          <article
+            key={option.id}
+            className="flex flex-col rounded-xl border border-line p-5"
+          >
             <h3 className="font-heading text-lg font-extrabold text-ink">{option.name}</h3>
 
             <p className="mt-3 text-xs font-semibold tracking-wide text-ink-soft uppercase">
@@ -32,7 +35,9 @@ export function BedOptions({ options }: BedOptionsProps) {
               ))}
             </ul>
 
-            <table className="mt-4 w-full text-left text-sm">
+            {/* mt-auto pins the table to the card bottom; grid rows stretch to equal
+                height, so both tables align even when the Includes chips wrap. */}
+            <table className="mt-auto w-full pt-4 text-left text-sm">
               <thead>
                 <tr className="text-xs tracking-wide text-ink-soft uppercase">
                   <th className="py-1 font-semibold">Configuration</th>

@@ -34,7 +34,7 @@ export function CoverageChecker({ documents }: CoverageCheckerProps) {
     <Section
       id="coverage"
       title="Coverage & Medicaid by state"
-      description="Pick a state to see its Medicaid requirement pathway and the LMN guide a provider should follow."
+      description="Pick a state to see its Medicaid pathway and the applicable LMN guide."
       action={
         <div className="flex flex-col gap-1">
           <label htmlFor={selectId} className="text-xs font-semibold text-ink-soft">
@@ -57,19 +57,48 @@ export function CoverageChecker({ documents }: CoverageCheckerProps) {
       }
     >
       {coverage.status === 'idle' && (
-        <p className="rounded-xl border border-dashed border-line bg-canvas/50 p-6 text-center text-ink-soft">
-          Select a state to see its coverage requirements.
-        </p>
+        <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-line bg-canvas/40 px-6 py-10 text-center">
+          <span
+            aria-hidden="true"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/20 text-accent-ink"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </span>
+          <div>
+            <p className="font-heading font-bold text-ink">Check coverage by state</p>
+            <p className="mx-auto mt-1 max-w-md text-sm text-ink-soft">
+              Choose a state to see its Medicaid pathway and the LMN guide a provider
+              should follow.
+            </p>
+          </div>
+        </div>
       )}
 
       {coverage.status === 'loading' && (
-        <p role="status" className="p-6 text-center text-ink-soft">
+        <p
+          role="status"
+          className="flex min-h-72 items-center justify-center rounded-xl border border-line p-6 text-center text-ink-soft"
+        >
           Checking coverage…
         </p>
       )}
 
       {coverage.status === 'error' && (
-        <p role="alert" className="p-6 text-center text-ink-soft">
+        <p
+          role="alert"
+          className="flex min-h-72 items-center justify-center rounded-xl border border-line p-6 text-center text-ink-soft"
+        >
           We couldn’t load coverage for that state. Please try again.
         </p>
       )}
@@ -93,7 +122,7 @@ function CoverageResult({
     .filter((d): d is ProductDocument => Boolean(d))
 
   return (
-    <div className="rounded-xl border border-line p-5">
+    <div className="min-h-72 rounded-xl border border-line p-5">
       <h3 className="font-heading text-lg font-extrabold text-ink">
         Cubby 2 coverage in {coverage.name}
       </h3>
@@ -115,36 +144,34 @@ function CoverageResult({
 
       {/* LMN guide group(s) — may be zero, one, or two */}
       <div className="mt-5">
-        <span className="text-xs font-semibold tracking-wide text-ink-soft uppercase">
-          LMN guide
-        </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold tracking-wide text-ink-soft uppercase">
+            LMN guide
+          </span>
+          {coverage.lmnGroups.map((group) => (
+            <Badge key={group} tone="accent">
+              Group {group}
+            </Badge>
+          ))}
+        </div>
         {coverage.lmnGroups.length === 0 ? (
           <p className="mt-2 text-sm text-ink-soft">
             No specific LMN guide group is listed for {coverage.name}. Use the LMN
             outline and worksheet in Documents to prepare a submission.
           </p>
         ) : (
-          <>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {coverage.lmnGroups.map((group) => (
-                <Badge key={group} tone="accent">
-                  Group {group}
-                </Badge>
-              ))}
-            </div>
-            <ul className="mt-3 space-y-2">
-              {guideDocs.map((doc) => (
-                <li key={doc.id}>
-                  <a
-                    href={`#${documentAnchorId(doc.id)}`}
-                    className="inline-flex items-center gap-1 font-semibold text-accent-ink hover:underline"
-                  >
-                    {doc.title} ↓
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </>
+          <ul className="mt-3 space-y-2">
+            {guideDocs.map((doc) => (
+              <li key={doc.id}>
+                <a
+                  href={`#${documentAnchorId(doc.id)}`}
+                  className="inline-flex items-center gap-1 font-semibold text-accent-ink hover:underline"
+                >
+                  {doc.title} ↓
+                </a>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
 
