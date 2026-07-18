@@ -52,12 +52,10 @@ export function ProductDetailPage() {
 
       <footer className="border-t border-line py-6 text-center text-sm text-ink-soft">
         <p>
-          Cubby supplier portal prototype · {product.contact.website} ·{' '}
-          {product.contact.phone}
+          Cubby supplier portal prototype
         </p>
         <p className="mt-1">
-          Product &amp; coverage-rule data only — no patient information (PHI) is stored
-          or displayed.
+          {product.contact.website} ·{' '}{product.contact.phone}
         </p>
       </footer>
     </div>
