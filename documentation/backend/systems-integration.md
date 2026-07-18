@@ -1,0 +1,28 @@
+### What internal systems would this need to connect to?
+To support the front end application and promote the implementation of future features, at bare minimum we'd need a backend server and access to a database and data warehouse. In a cloud based environment, I'd expect a firewall/load balancer solution, with options to serve content from a static CDN and function as a location to introduce an authentication check. The load balancer would then forward requests to our monolithic backend, responsible for housing the business logic and any other integration points needed to support the frontend. Next, we need a database that supports scalability, data consistency, and offers encryption when data is at rest. Finally we have our data warehouse, where we can transform and manipulate the data models originating from our application database.
+
+After that, I believe the options open up a little. We could pursue a personalized experience which would open doors for tracking workflows and statuses, supporting multiple roles, or realtime incentive feedback. We could instead prioritize integrating with other existing systems such as Salesforce to further enrich leads, or Shopify to further tighten our coupling to the e-commerce flow. We could build relationships with third parties to create an ingestion pipeline for subsections of our data to reduce internal workload around site maintenance.
+
+### How would your solution stay current?
+Version 1 relies on someone accessing an admin portal to manually make updates. If product data, forms, or coverage information changes, that attribute would be exposed through the admin portal, and it would be expected that someone would need to access that portal and manually update the information.
+
+After the foundations are laid in version 1, we could start to build automated ways of keeping the data up to date. Ingesting from an external public or private API, using a scheduled batch job on a timer to retrieve files from SFTP servers, subscribing to a stream of data, or pulling from an MCP server are all techniques I've used to keep data up to date while minimizing human interaction.
+
+From version 1 onward, this system is designed to be maintained by someone non-technical. Typical technical maintenance would still be required from time to time by need (cloud outages, critical vulnerability patching, key and certificate rotations, etc). Increased complexity (automation, integrations, scale) would also increase the required technical maintenance.
+
+### How would you keep coverage information correct?
+Similar to above, we'd need to manually get the coverage information into the system in "Version 1". I would be relying on professionals around me to be aware of the changes and know we need to get them into our system.
+
+All coverage information would live in our database with no other datastore (excluding the data warehouse if we so choose, but not applicable to this discussion). When a user loads our portal, the request is served from data in our database. If our database is unreachable (or any other critical part of our stack), the user would see an error screen with instructions to optionally contact our support. The source of truth is our database, with an audit trail to trace back to who made the change and when.
+
+I don't believe scale is a concern at this time, but if it does become a limiting factor, a distributed cache is the obvious solution for this data. Assuming the coverage information does not change frequently, we could store the information in a distributed cache and save the hits to our database. Rather than relying solely on a cache eviction strategy like LRU or round robin, I'd primarily rely on busting the cache entry when an update occurs so that the cache is always accurate. In the case of an update failure, inaccurate (stale) information would be presented until the cache eviction strategy is invoked.
+
+### AI safety
+In my experience, this comes down to three pieces: limit the amount of data the AI can rely on, always provide a standard "I can't help you with that" response (including contact info) if the answer could be vague, and leverage the tooling around the model (tone down the creativity, implement strict guardrails).
+
+Thinking further than a chat bot, this is where it becomes very important to assess the risk that is associated with the trade-off between human time and automation. In something like automated form review, which could be high risk and requires a high degree of processing, I think it's important to consider how to keep humans involved in the process to ensure the product remains safe. Instead of spending hours filling out a form and sending it back and forth, maybe our AI tool saves most of that time, but the user just needs to review a summary at the end.
+
+### How would you measure whether this is actually working?
+Version 1 is mostly about reorganizing to promote quicker access to data, so that is the first thing I would try to track. I think it would be a success to show if users spent _less_ time on the portal, especially if that meant leaving the site after landing on a detail page. Other possible metrics could be fewer calls to our support team (indicating users are more frequently self servicing rather than contacting us) or possibly more engagement with the incentive program.
+
+Once personalization is implemented, we can start building a much more comprehensive view of the lifecycles our portal is involved in. This combined with the metric tracking discussed above would unlock the abilities to further empower the sales team, influence our product roadmap, and respond to first time visitors.

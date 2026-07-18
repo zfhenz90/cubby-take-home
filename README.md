@@ -158,13 +158,15 @@ though `ProductDetailPage` is kept route-ready), and no CMS wiring (data is a ty
 behind the service seam, which is exactly where a CMS/API would plug in).
 
 ## Next Steps
+For full answers to the Systems Integrations questions, please see [systems-integration.md](./documentation/backend/systems-integration.md). 
+
 To complete "Opportunity 1" and move onto Opportunities 2 and 3, we need to expand beyond 
 just a frontend view. I've included a directory `documentation/backend-architecture/` that 
 contains .png files documenting some potential directions we could build in. These suggested 
 versions are very much suggestions, and it should be noted that everything after Version 1 
 is "written in pencil". After Version 1 is complete, we have a little more flexibility on what 
 to tackle next: some examples could be supporting new roles, personalization, product-drive 
-chat bot, or tighter integrations with current systems. 
+chat bot, or tighter integrations with current systems.
 
 ## Stack & tooling notes
 
